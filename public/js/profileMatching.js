@@ -37,9 +37,19 @@ const selectPlatformFormHandler = async (event) => {
     }
   }
 };
-  
-  
-  
+
+
+const addSubscriptionButton = document.querySelector('.start-sharing button');
+const searchButton = document.querySelector('.select-platform button');
+
+addSubscriptionButton.addEventListener('click', function() {
+  const subscriptionList = document.querySelectorAll('.left-side h5');
+  if (subscriptionList.length > 0) {
+    searchButton.disabled = false;
+  }
+});
+
+
   document
     .querySelector('.start-sharing')
     .addEventListener('submit', shareServiceFormHandler);

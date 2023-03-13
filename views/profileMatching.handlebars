@@ -1,6 +1,24 @@
 <div class="left-side">
     <h2>Welcome, {{data.[0].[0].user.name}}</h2>
 
+        <script>
+        function updateWelcomeMessage() {
+            // fetch the updated data from the server
+            fetch('/seeds/UserData')
+            .then(response => response.json())
+            .then(data => {
+                // update the content of the h2 element
+                const welcomeMessage = `Welcome, ${data[0][0].user.name}`;
+                document.querySelector('#welcome-message').textContent = welcomeMessage;
+            })
+            .catch(error => {
+                console.error('Failed to update welcome message:', error);
+            });
+        }
+        // update the welcome message once after the page loads
+        updateWelcomeMessage();
+        </script>
+
     <form class="form start-sharing">
         <button type="submit" class="btn btn-primary">ADD SUBSCRIPTION</button>
     </form>
@@ -35,7 +53,7 @@
     {{!-- <button type="submit" class="select-platform">Search</button> --}}
 
     <form class="form select-platform">
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-primary" disabled>Search</button>
     </form>
     <div>
         <input id = "application-login" type="text" placeholder="Application Login">
